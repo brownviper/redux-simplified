@@ -9,6 +9,37 @@
     span {display: block;}
 </style>
 <body>
+    <script>
+        function pushAction(value) {
+            return {
+                type: 'PUSH',
+                number: value
+            };
+        }
+
+        function pushReducer(state, action) {
+            if (state === undefined) {
+                state = [];
+            }
+
+            if(action.type === 'PUSH') {
+                return state.concat(action.number);
+            } else {
+                return state
+            }
+
+        }
+
+        var store = Redux.createStore(pushReducer);
+
+        console.log(store.getState());
+
+        store.dispatch(pushAction(4));
+        store.dispatch(pushAction(5));
+
+        console.log(store.getState());
+    </script>
+
     <div style="display: block">
         <span>1 - import redux from <em>"https://unpkg.com/redux@latest/dist/redux.js</em></span>
         <span>2 - create action function(s)</span>

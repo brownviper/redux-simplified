@@ -35,11 +35,12 @@ I can simplify the state management with Redux store in a nn - steps.
         
         // check for the action the reducer care about
         if(action.type === 'PUSH') {
-            state.concat(action.number);
+            // return the new state
+            return state.concat(action.number);
+        } else {
+            return state;
         }
     
-        // now we can return the new state
-        return state;
     }
 ``` 
 
@@ -52,7 +53,7 @@ I can simplify the state management with Redux store in a nn - steps.
 - now if you ask the store about its state, it should tell us its state is empty
 
 ```
-    console.log(store.state);
+    console.log(store.getState());
 ```
 
 - the state should be an empty array []
@@ -66,7 +67,7 @@ I can simplify the state management with Redux store in a nn - steps.
 - now check the new state
 
 ```
-    console.log(store.state);
+    console.log(store.getState());
 ```
 
 and we should see [4,5]
